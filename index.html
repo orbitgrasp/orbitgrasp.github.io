@@ -1,41 +1,687 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome to My GitHub Pages</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            color: #333;
+    <meta charset="utf-8">
+    <meta name="description"
+          content="">
+    <meta name="keywords" content="Grasp Detection, Equivariance, Symmetry, Grasp Learning">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OrbitGrasp: SE(3)-Equivariant Grasp Learning</title>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}, "HTML-CSS": {minScaleAdjust: 100} });
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
         }
-        header {
-            background-color: #4CAF50;
-            padding: 10px;
-        }
-        header h1 {
-            color: white;
-        }
-        .content {
-            margin: 50px auto;
-            width: 60%;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <!-- <link rel="icon" href="./static/images/favicon.png"> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to the offcial website of OrbitGrasp</h1>
-    </header>
-    <div class="content">
-        <p>This is a simple homepage for my GitHub Pages site. Feel free to customize it!</p>
-        <p>You can add more content here like links, images, and descriptions of your projects.</p>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
     </div>
+    <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+            <a class="navbar-item" href="https://bocehu.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+            </a>
+
+            <!--      <div class="navbar-item has-dropdown is-hoverable">-->
+            <!--        <a class="navbar-link">-->
+            <!--          More Related Research-->
+            <!--        </a>-->
+            <!--        <div class="navbar-dropdown">-->
+            <!--          <a class="navbar-item" href="https://pointw.github.io/equi_rl_page/">-->
+            <!--            Equivairant Reinforcement Learning-->
+            <!--          </a>-->
+            <!--          <a class="navbar-item" href="https://pointw.github.io/equi_q_page/">-->
+            <!--            Equivariant Q-Learning-->
+            <!--          </a>-->
+            <!--          <a class="navbar-item" href="https://pointw.github.io/equi_robot_page/">-->
+            <!--            On Robot Equivariant Learning-->
+            <!--          </a>-->
+            <!--          <a class="navbar-item" href="https://pointw.github.io/extrinsic_page/">-->
+            <!--            Extrinsic Equivariance-->
+            <!--          </a>-->
+            <!--        </div>-->
+            <!--      </div>-->
+        </div>
+
+    </div>
+</nav>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">OrbitGrasp: SE(3)-Equivariant Grasp Learning </h1>
+                    <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://bocehu.github.io/">Boce Hu</a><sup>1</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://zxp-s-works.github.io/">Xupeng Zhu</a><sup>$\star$1</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://www.dianwang.io/">Dian Wang</a><sup>$\star$1</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://www.linkedin.com/in/zihao-dong-321712212/">Zihao Dong</a><sup>$\star$1</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://haojhuang.github.io/">Haojie Huang</a><sup>$\star$1</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://www.linkedin.com/in/chenghao-wang-01a036203/">Chenghao Wang</a><sup>$\star$1</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://www.robinwalters.com/">Robin Walters</a><sup>1</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://helpinghandslab.netlify.app/people/">Robert Platt</a><sup>1 2</sup>
+            </span>
+                    </div>
+
+                    <div class="is-size-5 publication-authors">
+                        <div class="author-block"><sup>1 </sup>Northeastern Univeristy</div>
+                        <div class="author-block"><sup>2 </sup>Boston Dynamics AI Institute</div>
+
+                        <div>
+
+                            <span class="author-block"
+                                  style="color: lightgray;"><sup>$\star$</sup>equal contribution</span>
+                        </div>
+                        <div><b>Conference on Robot Learning (CoRL) 2024</b></div>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <!-- PDF Link. -->
+                            <span class="link-block">
+                <a href="https://arxiv.org/pdf/2407.03531"
+                   class="external-link button is-normal is-rounded is-dark custom-button-text">
+                  <span class="icon">
+                      <i class="fa-regular fa-file-lines"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+                            <!-- Video Link. -->
+                            <span class="link-block">
+                <a href="https://youtu.be/Y3UxZMPc0ms"
+                   class="external-link button is-normal is-rounded is-dark custom-button-text">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+                            <!-- Tweet Link. -->
+                            <span class="link-block">
+                <a
+                        class="external-link button is-normal is-rounded is-dark custom-button-text">
+                  <span class="icon">
+                      <i class="fa-brands fa-x-twitter"></i>
+                  </span>
+                  <span>Tweet</span>
+                </a>
+              </span>
+                            <!-- Code Link. -->
+                            <span class="link-block">
+                <a
+                        class="external-link button is-normal is-rounded is-dark custom-button-text">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                  </a>
+              </span>
+                            <!-- Dataset Link.
+                            <span class="link-block">
+                              <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                                 class="external-link button is-normal is-rounded is-dark">
+                                <span class="icon">
+                                    <i class="far fa-images"></i>
+                                </span>
+                                <span>Data</span>
+                                </a> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="hero is-light is-small">
+    <div class="hero-body">
+        <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+                <div class="item item-demo1">
+                    <video poster="" id="demo1" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/videos/demo1.mp4"
+                                type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="item item-demo2">
+                    <video poster="" id="demo2" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/videos/demo6.mp4"
+                                type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="item item-demo3">
+                    <video poster="" id="demo3" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/videos/demo3.mp4"
+                                type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="item item-demo4">
+                    <video poster="" id="demo4" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/videos/demo9.mp4"
+                                type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="item item-demo5">
+                    <video poster="" id="demo5" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/videos/demo5.mp4"
+                                type="video/mp4">
+                    </video>
+                </div>
+
+                <!-- <div class="item item-steve">
+                  <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/demo6.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+
+                <div class="item item-steve">
+                  <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/demo7.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+
+                <div class="item item-steve">
+                  <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/demo8.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+
+                <div class="item item-steve">
+                  <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/demo9.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+
+                <div class="item item-steve">
+                  <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/videos/demo10.mp4"
+                            type="video/mp4">
+                  </video> -->
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        While grasp detection is an important part of any robotic manipulation pipeline, reliable and
+                        accurate grasp detection in $SE(3)$ remains a research challenge. Many robotics applications in
+                        unstructured environments such as the home or warehouse would benefit a lot from better grasp
+                        performance. This paper proposes a novel framework for detecting $SE(3)$ grasp poses based on
+                        point cloud input. Our main contribution is to propose an $SE(3)$-equivariant model that maps
+                        each point in the cloud to a continuous grasp quality function over the 2-sphere $S^2$ using a
+                        spherical harmonic basis. Compared with reasoning about a finite set of samples, this
+                        formulation improves the accuracy and efficiency of our model when a large number of samples
+                        would otherwise be needed. In order to accomplish this, we propose a novel variation on
+                        EquiFormerV2 that leverages a UNet-style encoder-decoder architecture to enlarge the number of
+                        points the model can handle. Our resulting method, which we name $\textit{OrbitGrasp}$,
+                        significantly outperforms baselines in both simulation and physical experiments. </p>
+                </div>
+            </div>
+        </div>
+        <!--/ Abstract. -->
+
+        <!-- Paper video. -->
+        <!-- <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Video</h2>
+            <div class="publication-video">
+              <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div> -->
+        <!--/ Paper video. -->
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Introduction</h2>
+                <h4 class="title is-4">Summary of Orbitgrasp</h4>
+                <div class="content has-text-justified">
+                    <p>
+                        In this paper, we propose $\textbf{OrbitGrasp}$, an $SE(3)$-equivariant grasp learning framework
+                        using spherical harmonics for 6-DoF grasp detection. Our method leverages
+                        an $SE(3)$-equivariant network that maps each point in a point cloud to a grasp quality
+                        function over the 2-sphere $S^2$. For each point in the cloud, this function
+                        encodes the grasp quality for possible hand approach directions toward that point.
+                        By applying geometric constrains, we reduce the action space to an $\textit{orbit}$ (i.e.,
+                        an $S^1$ manifold embedded in $S^2$) of approach directions, defined relative to the
+                        surface normal at each contact point. As shown below:
+                    </p>
+                    <p align="center">
+                        <img src="./static/images/orbit.png" alt="" style="width:70%"></img>
+                    </p>
+                    <p>
+                        We infer an orbit of grasps (yellow ellipse) defined relative to the surface normal (red arrow)
+                        at the contact point (pink dot). Since our model is equivariant over $SO(3)$, the optimal pose
+                        (represented by the solid gripper) on the orbit rotates consistently with the scene (left and
+                        right show a rotation by 90 degrees).
+                    </p>
+                    <p align="center">
+                        <img src="./static/images/pipeline.png"></img>
+                    </p>
+                    <p>
+                        OrbitGrasp divides the input point cloud into several sub-point clouds $B_i$ (neighborhoods
+                        around center points $c_i$) and processes each through the network and
+                        outputs a grasp quality function $f_p\colon S^2 \to \mathbb{R}$ for each point $p$ in $B_i$. The
+                        model produces Fourier coefficients for each $p$ (represented as different channels in the
+                        network output), which are used to reconstruct $f_p$ based on spherical harmonics. The Orbit
+                        Pose Sampler generates multiple poses for each $p$ perpendicular to the surface normal $n_p$ and
+                        queries corresponding $f_p(\cdot)$ to evaluate these grasp qualities along the orbit. The grasp
+                        with the highest quality is then selected, thereby producing the optimal grasp pose $a^*$, as
+                        shown on the right.
+                    </p>
+
+                </div>
+                <h4 class="title is-4">Grasp Pose Representation</h4>
+                <div class="content has-text-justified">
+
+                    <p>
+                        Since our model only infers grasp quality over $S^2$, we must obtain the
+                        remaining orientation DoF. We accomplish this by constraining one of the two gripper fingers to
+                        make contact such that the object surface normal at the contact point is parallel to the gripper
+                        closing direction (see
+                        figure below). Specifically, for a point $p \in \mathcal{B}_i \subset
+                        B_i$ in region $B_i$ with object surface normal $n_p$, we constrain the hand y-axis (gripper
+                        closing direction) to be parallel to $n_p$. Therefore, valid hand orientations form a
+                        submanifold in $SO(3)$ homeomorphic to a 1-sphere $S^1$ which we call the $\textit{orbit}$ at
+                        $p$
+                        \begin{equation}
+                        O_{p} = \{R = [r_1, n_p, r_3] \in SO(3) \}
+                        \label{eqn:grasp_pose_orthogonal}
+                        \end{equation}
+                        where $r_1, n_p, r_3$ are the columns of the 3-by-3 rotation matrix $R$. Valid orientations are
+                        determined by the $z$-axis of the gripper (the approach direction of the hand) which may be any
+                        unit vector perpendicular to $n_p$. We may thus specify valid grasps by their approach vector
+                        $r_3 \in \overline{O}_{p} = \{ r_3 \in S^1 : n_p^\top r_3 = 0 \}$ since $r_1 = -n_p \times r_3$.
+                    </p>
+                    <p align="center">
+                        <img src="./static/images/grasp_rep.png" style="width:25%"></img>
+                    </p>
+                    <p>
+                        In the above figure, green and blue denote the $y$, $z$ directions of the hand, and $n_p$ is the
+                        normal vector at $p$ (red). Black is the orbit of the approach direction.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Simulation Experiments</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        We evaluated our method on a widely used grasping benchmark with 303 training and 40
+                        test objects from various object datasets. Two camera configurations were tested: a single-view,
+                        with a randomly positioned camera on a spherical region around the workspace, and a three-camera
+                        multi-view setup.
+                        We assessed two different grasping tasks: $\textbf{$\textit{Pile}$}$, where objects are randomly
+                        dropped into the workspace, and $\textbf{$\textit{Packed}$}$, where objects are placed upright
+                        in
+                        random poses.
+                    </p>
+                </div>
+                <div class="content has-text-centered" style="margin-top: 20px; margin-bottom: -10px">
+                    <p>
+                        <span style="margin-right: 360px;">$\textbf{Pile Scene}$  </span>
+                        $\textbf{Packed Scene}$
+                    </p>
+                </div>
+                <div class="column is-centered">
+                    <img src="./static/images/sim_setting.png"></img>
+                </div>
+
+                <div class="content has-text-centered">
+                    <p>
+                        $\textbf{Visualization of Pile Scene}$
+                    </p>
+                </div>
+
+                <div class="columns is-centered">
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo1.mp4" style="border-radius:10px;"></video>
+
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo2.mp4" style="border-radius:10px;"></video>
+
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo3.mp4" style="border-radius:10px;"></video>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="columns is-centered">
+
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo6.mp4" style="border-radius:10px;"></video>
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo5.mp4" style="border-radius:10px;"></video>
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo4.mp4" style="border-radius:10px;"></video>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="content has-text-centered">
+                    <p>
+                        $\textbf{Visualization of Packed Scene}$
+                    </p>
+                </div>
+
+                <div class="columns is-centered">
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo7.mp4" style="border-radius:10px;"></video>
+
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo8.mp4" style="border-radius:10px;"></video>
+
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo9.mp4" style="border-radius:10px;"></video>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="columns is-centered">
+
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo10.mp4" style="border-radius:10px;"></video>
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo11.mp4" style="border-radius:10px;"></video>
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/sim_demo12.mp4" style="border-radius:10px;"></video>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="column is-centered">
+                    <img src="./static/images/sim_result.png"></img>
+                </div>
+                <div class="content has-text-justified">
+                    <p>
+                        We compared the OrbitGrasp with various baselines in terms of grasp success rate (GSR) and
+                        declutter rate (DR). OrbitGrasp (3M) is trained on the downsampled 3M dataset. OrbitGrasp (6M) is trained on
+                        the full 6M dataset.
+                        The results indicate that our method outperforms all
+                        baselines across both settings and tasks in terms of both GSR and DR, in both the 3M and 6M
+                        training sets. The high GSR indicates that our model can predict accurate grasp quality. On the
+                        other hand, the high DR signifies that our model infers accurate grasp poses that do not move
+                        objects outside of the workspace.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Physical Experiments</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        To assess our method's real-world performance, we conduct physical experiments involving two
+                        tasks under two camera settings, replicating those in the simulation. We directly transfer the
+                        trained model from the simulation to the real-world setting to evaluate their performance gap.
+                    </p>
+                </div>
+                <div class="content has-text-justified">
+                    <p>
+                        $\textbf{Real world Experiment Setting.}$ (a) Robot platform setup. (b) Upper: Packed object set
+                        with 10 objects. Bottom: Packed scene (c) Upper: Pile object set with 25 objects. Bottom: Pile
+                        scene </p>
+                </div>
+                <div class="column is-centered" style="margin-top: -20px;">
+                    <img src="./static/images/phy_set.png"></img>
+                </div>
+                <div class="content has-text-centered" style="margin-top: 30px;">
+                    <p>
+                        $\textbf{Result Visualization}$
+                    </p>
+                </div>
+
+                <div class="columns is-centered">
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" controls="" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/packed1.mp4" style="border-radius:10px;"></video>
+                            <p style="text-align: center; font-size: 18px">Packed Scene 1</p>
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" controls="" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/packed2.mp4" style="border-radius:10px;"></video>
+                            <p style="text-align: center; font-size: 18px">Packed Scene 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns is-centered">
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" controls="" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/pile_1.mp4" style="border-radius:10px;"></video>
+                            <p style="text-align: center; font-size: 18px">Pile Scene 1</p>
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" controls="" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/pile2.mp4" style="border-radius:10px;"></video>
+                            <p style="text-align: center; font-size: 18px">Pile Scene 2</p>
+                        </div>
+                    </div>
+                    <div class="column is-centered">
+                        <div class="video-container">
+                            <video class="center" controls="" playsinline="" autoplay="" loop="" muted=""
+                                   src="./static/videos/pile3.mp4" style="border-radius:10px;"></video>
+                            <p style="text-align: center; font-size: 18px">Pile Scene 3</p>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="content has-text-centered" style="margin-top: 40px;">
+                    <p>We compared the results of OrbitGrasp with VNEdgeGrasp using the same metrics as in the
+                        simulation experiments.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <p>
+                        $\textbf{Quantitative Results}$
+                    </p>
+                </div>
+                <div class="column is-centered" style="margin-top: -25px;">
+                    <img src="./static/images/real_result.png"></img>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Video</h2>
+                <center>
+                    <iframe width="840" height="472.5"
+                            src="https://www.youtube.com/embed/Y3UxZMPc0ms?si=M6vSOXzbBxwNsRAV"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </center>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+        <h3 class="title">Citation</h3>
+        <pre><code>
+@inproceedings{
+   huorbitgrasp,
+   title={OrbitGrasp: SE (3)-Equivariant Grasp Learning},
+   author={Hu, Boce and Zhu, Xupeng and Wang, Dian and Dong, Zihao and Huang, Haojie and Wang, Chenghao and Walters, Robin and Platt, Robert},
+   booktitle={8th Annual Conference on Robot Learning},
+   year={2024},
+   url={https://openreview.net/forum?id=clqzoCrulY}
+}
+    </code></pre>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
+                    <p>
+                        Website design borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
-
