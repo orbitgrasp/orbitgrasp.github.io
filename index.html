@@ -128,7 +128,7 @@
                         <div>
 
                             <span class="author-block"
-                                  style="color: lightgray;"><sup>$\star$</sup>equal contribution</span>
+                                  style="color: gray;"><sup>$\star$</sup>equal contribution</span>
                         </div>
                         <div><b>Conference on Robot Learning (CoRL) 2024</b></div>
                     </div>
@@ -199,12 +199,12 @@
     <div class="hero-body">
         <div class="container">
             <div id="results-carousel" class="carousel results-carousel">
-                <div class="item item-demo1">
-                    <video poster="" id="demo1" autoplay controls muted loop playsinline height="100%">
-                        <source src="./static/videos/demo1.mp4"
-                                type="video/mp4">
-                    </video>
-                </div>
+<!--                <div class="item item-demo1">-->
+<!--                    <video poster="" id="demo1" autoplay controls muted loop playsinline height="100%">-->
+<!--                        <source src="./static/videos/demo1.mp4"-->
+<!--                                type="video/mp4">-->
+<!--                    </video>-->
+<!--                </div>-->
 
                 <div class="item item-demo2">
                     <video poster="" id="demo2" autoplay controls muted loop playsinline height="100%">
@@ -377,13 +377,11 @@
                         determined by the $z$-axis of the gripper (the approach direction of the hand) which may be any
                         unit vector perpendicular to $n_p$. We may thus specify valid grasps by their approach vector
                         $r_3 \in \overline{O}_{p} = \{ r_3 \in S^1 : n_p^\top r_3 = 0 \}$ since $r_1 = -n_p \times r_3$.
+                        In the figure below, green and blue denote the $y$, $z$ directions of the hand, and $n_p$ is the
+                        normal vector at $p$ (red). Black is the orbit of the approach direction.
                     </p>
                     <p align="center">
                         <img src="./static/images/grasp_rep.png" style="width:25%"></img>
-                    </p>
-                    <p>
-                        In the above figure, green and blue denote the $y$, $z$ directions of the hand, and $n_p$ is the
-                        normal vector at $p$ (red). Black is the orbit of the approach direction.
                     </p>
                 </div>
             </div>
